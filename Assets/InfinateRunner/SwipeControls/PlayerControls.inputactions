@@ -29,7 +29,7 @@
                     "name": "",
                     "id": "aa9f734b-d49b-473a-b5e6-31c2887ed7b9",
                     "path": "<Touchscreen>/primaryTouch/press",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1)",
                     "processors": "",
                     "groups": "",
                     "action": "PrimaryContact",

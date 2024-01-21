@@ -10,8 +10,9 @@ public class InputManager : MonoBehaviour
     public delegate void TouchStartAction(Vector2 position, float time);
     public event TouchStartAction OnTouchStart;
 
-    public delegate void TouchEndAction(Vector2 position, float time);
-    public event TouchEndAction OnTouchEnd;
+
+    public delegate void TouchPerformAction(Vector2 position, float time);
+    public event TouchPerformAction OnTouchPerform;
     #endregion
 
     
@@ -34,19 +35,21 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         playercontrols.Touch.PrimaryContact.started += TouchStarted;
-        playercontrols.Touch.PrimaryContact.canceled += TouchEnded;
+        playercontrols.Touch.PrimaryContact.performed += TouchPerformed;
     }
 
-   
+    private void TouchPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Touch Performed");
+        if (OnTouchPerform != null) OnTouchPerform(Utils.ScreenToWorld(mainCamera,
+             playercontrols.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)obj.startTime);
+    }
 
     private void TouchStarted(InputAction.CallbackContext obj)
     {
+        Debug.Log("Touch Started");
         if (OnTouchStart != null) OnTouchStart(Utils.ScreenToWorld(mainCamera,
             playercontrols.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)obj.startTime);
     }
-    private void TouchEnded(InputAction.CallbackContext obj)
-    {
-        if (OnTouchEnd != null) OnTouchEnd(Utils.ScreenToWorld(mainCamera,
-            playercontrols.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)obj.startTime);
-    }
+  
 }

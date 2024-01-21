@@ -7,10 +7,7 @@ public class SwipeDetection : MonoBehaviour
 {
     [SerializeField] InputManager inputmanager;
 
-    [SerializeField]
-    private float minDistance = .03f;
-    [SerializeField]
-    private float maxTime = 1f;
+ 
     [SerializeField, Range(0f,1f)]
     private float directionThreshold = .9f;
 
@@ -42,12 +39,15 @@ public class SwipeDetection : MonoBehaviour
     private void OnEnable()
     {
         inputmanager.OnTouchStart += SwipeStarted;
-        inputmanager.OnTouchEnd += SwipeEnded;
+        inputmanager.OnTouchPerform += SwipePerformed;
     }
+
+  
+
     private void OnDisable()
     {
         inputmanager.OnTouchStart -= SwipeStarted;
-        inputmanager.OnTouchEnd -= SwipeEnded;
+        inputmanager.OnTouchPerform -= SwipePerformed;
     }
 
 
@@ -56,22 +56,22 @@ public class SwipeDetection : MonoBehaviour
         startPosition = position;
         startTime = time;
     }
-    private void SwipeEnded(Vector2 position, float time)
+    private void SwipePerformed(Vector2 position, float time)
     {
         endPosition = position;
         endTime = time;
         DetectSwipe();
     }
+    private void SwipeEnded(Vector2 position, float time)
+    {
+       
+    }
 
     private void DetectSwipe()
     {
-        if(Vector3.Distance(startPosition,endPosition) >= minDistance &&
-            (endTime - startTime) <= maxTime)
-        {
-            Vector3 direction = endPosition - startPosition;
-            Vector2 direction2d = new Vector2(direction.x, direction.y).normalized;
-            DetectDirection(direction2d);
-        }
+        Vector3 direction = endPosition - startPosition;
+        Vector2 direction2d = new Vector2(direction.x, direction.y).normalized;
+        DetectDirection(direction2d);
     }
 
     private void DetectDirection(Vector2 direction2d)
