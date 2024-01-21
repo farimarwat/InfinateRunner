@@ -22,6 +22,9 @@ public class WorldGeneratorScript : MonoBehaviour
     [SerializeField] private GameObject[] streetlights;
     [SerializeField] private Transform[] streetlightspawnpoints;
 
+    [SerializeField, Header("Threats")] private Threat[] threats;
+    [SerializeField] private Transform[] threatLanes;
+
     void Start()
     {
         Vector3 nextBlockPosition = StartingPoint.position;
@@ -36,7 +39,36 @@ public class WorldGeneratorScript : MonoBehaviour
             
         }
 
-       
+        StartSpawnThreats();
+    }
+
+    Vector3 GetThreatRandomSpawnPoint()
+    {
+        if(threatLanes.Length == 0)
+        {
+            return StartingPoint.position;
+        }
+        int picked = Random.Range(0, threatLanes.Length);
+        Vector3 pickedLane = threatLanes[picked].position;
+        return pickedLane + new Vector3(0,0,StartingPoint.position.z);
+    }
+
+    private void StartSpawnThreats()
+    {
+       foreach(Threat  threat in threats)
+        {
+            StartCoroutine(SpawnThreatCoroutine(threat));
+        }
+    }
+    IEnumerator SpawnThreatCoroutine(Threat threatToSpawn)
+    {
+        while (true)
+        {
+            Threat newThreat = Instantiate(threatToSpawn,GetThreatRandomSpawnPoint(), Quaternion.identity);
+            newThreat.GetMovementScript().SetDestination(EndingPoint.position);
+            newThreat.GetMovementScript().SetMoveDirection(movedirection);
+            yield return new WaitForSeconds(newThreat.SpawnInterval);
+        }
     }
 
     GameObject SpawnBlock(Vector3 spawnposition, Vector3 movedir)
@@ -45,7 +77,7 @@ public class WorldGeneratorScript : MonoBehaviour
         GameObject picked = roadBlocks[pick].gameObject;
         GameObject newBlock = Instantiate(picked) as GameObject;
         newBlock.transform.position = spawnposition;
-        RoadMovement rm = newBlock.GetComponent<RoadMovement>();
+        MovementScript rm = newBlock.GetComponent<MovementScript>();
         if (rm != null)
         {
             rm.SetSpeed(roadMoveSpeed);
@@ -85,7 +117,7 @@ public class WorldGeneratorScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject != null)
+        if(other.gameObject != null && other.gameObject.tag == "RoadBlock")
         {
             GameObject newBlock = SpawnBlock(other.transform.position, movedirection);
             float halfOther = other.GetComponent<Renderer>().bounds.size.z / 2f;

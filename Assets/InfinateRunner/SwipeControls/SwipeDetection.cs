@@ -9,7 +9,7 @@ public class SwipeDetection : MonoBehaviour
 
  
     [SerializeField, Range(0f,1f)]
-    private float directionThreshold = .9f;
+    private float directionThreshold = .5f;
 
     private Vector2 startPosition;
     private float startTime;

@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 1871365234}
   - component: {fileID: 1871365235}
   m_Layer: 0
-  m_Name: RoadSpawner
+  m_Name: SpawnDetectioin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,6 +270,8 @@ MonoBehaviour:
   streetlightspawnpoints:
   - {fileID: 1153280885006517604}
   - {fileID: 5046214321501640817}
+  threats:
+  - {fileID: 638521299008936590, guid: d38b0553c9930af4b85036b36f83d3d7, type: 3}
 --- !u!54 &1386955498
 Rigidbody:
   m_ObjectHideFlags: 0

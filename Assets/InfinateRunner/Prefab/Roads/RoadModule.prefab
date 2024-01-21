@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2835812370320503329}
   m_Layer: 6
   m_Name: RoadModule
-  m_TagString: Untagged
+  m_TagString: RoadBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,3 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42aa009138cc831418e75f6af7eca426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 20

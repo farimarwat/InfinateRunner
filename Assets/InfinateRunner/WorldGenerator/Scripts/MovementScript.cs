@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadMovement : MonoBehaviour
+public class MovementScript : MonoBehaviour
 {
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed = 20f;
     private Vector3 moveDirection;
     private Vector3 destination;
 
+
+ 
     void Start()
     {
        
