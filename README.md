@@ -1,5 +1,6 @@
 # InfinateRunner
 <a href="infinaterunnerdemo.png"><img src="infinaterunnerdemo.png" width="30%"/> </a>
+
 Unity 3d infinate/endless runner game
 
 ### Note: This is an open-source project and only those who love coding can join. InfinateRunning is still in development and only 30% is completed. All assets are available  in EnvAssets folder. We have to take it to the next level.
