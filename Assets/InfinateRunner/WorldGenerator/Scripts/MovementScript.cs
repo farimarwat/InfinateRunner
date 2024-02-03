@@ -5,12 +5,10 @@ using UnityEngine;
 
 public class MovementScript : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 20f;
+    [SerializeField] private float moveSpeed;
     private Vector3 moveDirection;
     private Vector3 destination;
 
-
- 
     void Start()
     {
        

@@ -9,7 +9,7 @@ public class WorldGeneratorScript : MonoBehaviour
     [SerializeField] Transform StartingPoint;
     [SerializeField] Transform EndingPoint;
     [SerializeField] Transform[] roadBlocks;
-    [SerializeField] float roadMoveSpeed = 5f;
+    [SerializeField] float GlobalSpeed = 5f;
     Vector3 movedirection;
 
     //Spawning Buildings
@@ -27,8 +27,32 @@ public class WorldGeneratorScript : MonoBehaviour
     [SerializeField] private Transform[] threatLanes;
     [SerializeField] private Vector3 occupationsdetections;
 
+    private GlobalSpeedController globalSpeedController;
+
+    private void OnEnable()
+    {
+        if(globalSpeedController != null)
+        {
+            globalSpeedController.OnSpeedChanged += SetGlobalSpeed;
+        }
+    }
+    private void Awake()
+    {
+        globalSpeedController = GetComponent<GlobalSpeedController>();
+    }
+    private void OnDisable()
+    {
+        if (globalSpeedController != null)
+        {
+            globalSpeedController.OnSpeedChanged -= SetGlobalSpeed;
+        }
+    }
     void Start()
     {
+        if(globalSpeedController != null)
+        {
+            globalSpeedController.SetGlobalSpeed(5);
+        }
         Vector3 nextBlockPosition = StartingPoint.position;
         float endPointDistance = Vector3.Distance(StartingPoint.position, EndingPoint.position);
          movedirection = (EndingPoint.position - StartingPoint.position).normalized;
@@ -114,7 +138,7 @@ public class WorldGeneratorScript : MonoBehaviour
         MovementScript rm = newBlock.GetComponent<MovementScript>();
         if (rm != null)
         {
-            rm.SetSpeed(roadMoveSpeed);
+            rm.SetSpeed(GlobalSpeed);
             rm.SetDestination(EndingPoint.position);
             rm.SetMoveDirection(movedir);
         }
@@ -161,5 +185,8 @@ public class WorldGeneratorScript : MonoBehaviour
         }
     }
 
-  
+    private void SetGlobalSpeed(float speed)
+    {
+        GlobalSpeed = speed;
+    }
 }

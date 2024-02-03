@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 735365377198339580, guid: c2f7230a163775545b5bdd16d8d8e27c, type: 3}
       propertyPath: m_TagString
-      value: Threat
+      value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 735365377198339580, guid: c2f7230a163775545b5bdd16d8d8e27c, type: 3}
       propertyPath: m_StaticEditorFlags
