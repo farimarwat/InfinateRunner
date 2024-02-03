@@ -22,8 +22,10 @@ public class WorldGeneratorScript : MonoBehaviour
     [SerializeField] private GameObject[] streetlights;
     [SerializeField] private Transform[] streetlightspawnpoints;
 
+    //Thread
     [SerializeField, Header("Threats")] private Threat[] threats;
     [SerializeField] private Transform[] threatLanes;
+    [SerializeField] private Vector3 occupationsdetections;
 
     void Start()
     {
@@ -42,20 +44,48 @@ public class WorldGeneratorScript : MonoBehaviour
         StartSpawnThreats();
     }
 
-    Vector3 GetThreatRandomSpawnPoint()
+    bool GetRandomSpawnPoint(out Vector3 spawnPoint)
     {
-        if(threatLanes.Length == 0)
+        Vector3[] spawnpoints = GetAvailableSpawnPoints();
+        if(spawnpoints.Length == 0)
         {
-            return StartingPoint.position;
+            spawnPoint = new Vector3(0, 0, 0);
+            return false;
         }
-        int picked = Random.Range(0, threatLanes.Length);
-        Vector3 pickedLane = threatLanes[picked].position;
-        return pickedLane + new Vector3(0,0,StartingPoint.position.z);
+        int picked = Random.Range(0, spawnpoints.Length);
+      
+        spawnPoint = spawnpoints[picked];
+        return true;
     }
 
+    private Vector3[] GetAvailableSpawnPoints()
+    {
+        List<Vector3> spawnPoints = new List<Vector3>();
+        foreach(Transform spawnTrans in threatLanes)
+        {
+            Vector3 spawnpoint = spawnTrans.position + new Vector3(0, 0, StartingPoint.position.z);
+            if (!isPositionOccupied(spawnpoint))
+            {
+                spawnPoints.Add(spawnpoint);
+            }
+        }
+        return spawnPoints.ToArray();
+    }
+    private bool isPositionOccupied(Vector3 position)
+    {
+        Collider[] cols = Physics.OverlapBox(position, occupationsdetections);
+        foreach(Collider col in cols)
+        {
+            if(col.gameObject.tag == "Threat")
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     private void StartSpawnThreats()
     {
-       foreach(Threat  threat in threats)
+        foreach (Threat threat in threats)
         {
             StartCoroutine(SpawnThreatCoroutine(threat));
         }
@@ -64,10 +94,14 @@ public class WorldGeneratorScript : MonoBehaviour
     {
         while (true)
         {
-            Threat newThreat = Instantiate(threatToSpawn,GetThreatRandomSpawnPoint(), Quaternion.identity);
-            newThreat.GetMovementScript().SetDestination(EndingPoint.position);
-            newThreat.GetMovementScript().SetMoveDirection(movedirection);
-            yield return new WaitForSeconds(newThreat.SpawnInterval);
+            if(GetRandomSpawnPoint(out Vector3 spawnPoint))
+            {
+                Threat newThreat = Instantiate(threatToSpawn, spawnPoint, Quaternion.identity);
+                newThreat.GetMovementScript().SetDestination(EndingPoint.position);
+                newThreat.GetMovementScript().SetMoveDirection(movedirection);
+            }
+           
+            yield return new WaitForSeconds(threatToSpawn.SpawnInterval);
         }
     }
 
@@ -126,4 +160,6 @@ public class WorldGeneratorScript : MonoBehaviour
             newBlock.transform.position += newOffset;
         }
     }
+
+  
 }

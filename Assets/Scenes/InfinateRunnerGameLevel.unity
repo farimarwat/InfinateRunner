@@ -310,6 +310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TouchManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3974380914279090332, guid: 54d658e8d080c0240b11244f6e14e7b9, type: 3}
+      propertyPath: directionThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3974380914279090333, guid: 54d658e8d080c0240b11244f6e14e7b9, type: 3}
       propertyPath: mainCamera
       value: 
@@ -472,6 +476,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threats.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threats.Array.data[0]
+      value: 
+      objectReference: {fileID: 692673726797708440, guid: f94b8be29ace39348aa908d977f5c35f, type: 3}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threats.Array.data[1]
+      value: 
+      objectReference: {fileID: 692673726797708440, guid: 9fe799bf98367794f8ccb441b85c5f9f, type: 3}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threats.Array.data[2]
+      value: 
+      objectReference: {fileID: 692673726797708440, guid: 3d2395f61093388478a3f20d1307e02b, type: 3}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threatLanes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: occupationsdetections.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: occupationsdetections.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: occupationsdetections.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threatLanes.Array.data[0]
+      value: 
+      objectReference: {fileID: 1701622889}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threatLanes.Array.data[1]
+      value: 
+      objectReference: {fileID: 389308288}
+    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: threatLanes.Array.data[2]
+      value: 
+      objectReference: {fileID: 1491556070}
     - target: {fileID: 1096939854163467549, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
       propertyPath: m_Name
       value: WorldGenerator

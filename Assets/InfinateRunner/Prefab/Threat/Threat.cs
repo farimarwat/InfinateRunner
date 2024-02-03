@@ -12,17 +12,7 @@ public class Threat : MonoBehaviour
     public float SpawnInterval { 
         get { return _SpawnInterval; }
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+ 
     public MovementScript GetMovementScript()
     {
         return movementScript;
