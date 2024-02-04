@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 1200048592105421754}
   - component: {fileID: -4473003175502861622}
   - component: {fileID: 1386955498}
+  - component: {fileID: 1049486633}
   m_Layer: 0
   m_Name: WorldGenerator
   m_TagString: Untagged
@@ -256,7 +257,7 @@ MonoBehaviour:
   roadBlocks:
   - {fileID: 741115174339694634, guid: c23191fc05984f744b11181e6ced0e58, type: 3}
   - {fileID: 741115174339694634, guid: 82430fb3501d76f4f969de3b310adeaa, type: 3}
-  roadMoveSpeed: 5
+  GlobalSpeed: 5
   buildings:
   - {fileID: 8322380603315136285, guid: fe77ef7b1e3081e48a01d573351e9dc0, type: 3}
   - {fileID: 8322380603315136285, guid: 49d7175a1b873e34db0cd92d4165aace, type: 3}
@@ -271,7 +272,14 @@ MonoBehaviour:
   - {fileID: 1153280885006517604}
   - {fileID: 5046214321501640817}
   threats:
-  - {fileID: 638521299008936590, guid: d38b0553c9930af4b85036b36f83d3d7, type: 3}
+  - {fileID: 692673726797708440, guid: f94b8be29ace39348aa908d977f5c35f, type: 3}
+  - {fileID: 692673726797708440, guid: 9fe799bf98367794f8ccb441b85c5f9f, type: 3}
+  - {fileID: 692673726797708440, guid: 3d2395f61093388478a3f20d1307e02b, type: 3}
+  threatLanes:
+  - {fileID: 1950905759}
+  - {fileID: 1339055249}
+  - {fileID: 1173340339}
+  occupationsdetections: {x: 0.2, y: 0.3, z: 3}
 --- !u!54 &1386955498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -288,6 +296,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1049486633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1096939854163467549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3987a222dd170774aa2cb983068f47a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalSpeed: 0
 --- !u!1 &4089131290724876725
 GameObject:
   m_ObjectHideFlags: 0

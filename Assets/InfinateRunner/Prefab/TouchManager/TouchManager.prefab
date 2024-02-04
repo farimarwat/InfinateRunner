@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputmanager: {fileID: 3974380914279090333}
-  minDistance: 0.03
-  maxTime: 1
-  directionThreshold: 0.9
+  directionThreshold: 0.5
 --- !u!114 &3974380914279090333
 MonoBehaviour:
   m_ObjectHideFlags: 0

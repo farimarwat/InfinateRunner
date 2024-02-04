@@ -27,32 +27,12 @@ public class WorldGeneratorScript : MonoBehaviour
     [SerializeField] private Transform[] threatLanes;
     [SerializeField] private Vector3 occupationsdetections;
 
-    private GlobalSpeedController globalSpeedController;
+    [Header("Pickups")]
+    [SerializeField] private PickUpController[] pickups;
 
-    private void OnEnable()
-    {
-        if(globalSpeedController != null)
-        {
-            globalSpeedController.OnSpeedChanged += SetGlobalSpeed;
-        }
-    }
-    private void Awake()
-    {
-        globalSpeedController = GetComponent<GlobalSpeedController>();
-    }
-    private void OnDisable()
-    {
-        if (globalSpeedController != null)
-        {
-            globalSpeedController.OnSpeedChanged -= SetGlobalSpeed;
-        }
-    }
+ 
     void Start()
     {
-        if(globalSpeedController != null)
-        {
-            globalSpeedController.SetGlobalSpeed(5);
-        }
         Vector3 nextBlockPosition = StartingPoint.position;
         float endPointDistance = Vector3.Distance(StartingPoint.position, EndingPoint.position);
          movedirection = (EndingPoint.position - StartingPoint.position).normalized;
@@ -66,6 +46,10 @@ public class WorldGeneratorScript : MonoBehaviour
         }
 
         StartSpawnThreats();
+
+        PickUpController pickup = Instantiate(pickups[0], StartingPoint.position, Quaternion.identity);
+        pickup.GetComponent<MovementScript>().SetDestination(EndingPoint.position);
+        pickup.GetComponent<MovementScript>().SetMoveDirection(movedirection);
     }
 
     bool GetRandomSpawnPoint(out Vector3 spawnPoint)
@@ -100,7 +84,7 @@ public class WorldGeneratorScript : MonoBehaviour
         Collider[] cols = Physics.OverlapBox(position, occupationsdetections);
         foreach(Collider col in cols)
         {
-            if(col.gameObject.tag == "Threat")
+            if(col.gameObject.tag == "Threat" || col.gameObject.tag == "Coin")
             {
                 return true;
             }
@@ -123,6 +107,7 @@ public class WorldGeneratorScript : MonoBehaviour
                 Threat newThreat = Instantiate(threatToSpawn, spawnPoint, Quaternion.identity);
                 newThreat.GetMovementScript().SetDestination(EndingPoint.position);
                 newThreat.GetMovementScript().SetMoveDirection(movedirection);
+             
             }
            
             yield return new WaitForSeconds(threatToSpawn.SpawnInterval);
@@ -183,10 +168,5 @@ public class WorldGeneratorScript : MonoBehaviour
             Vector3 newOffset = -(halfNewBlock + halfOther) * movedirection;
             newBlock.transform.position += newOffset;
         }
-    }
-
-    private void SetGlobalSpeed(float speed)
-    {
-        GlobalSpeed = speed;
     }
 }

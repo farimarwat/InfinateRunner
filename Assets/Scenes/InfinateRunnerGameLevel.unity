@@ -310,10 +310,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TouchManager
       objectReference: {fileID: 0}
-    - target: {fileID: 3974380914279090332, guid: 54d658e8d080c0240b11244f6e14e7b9, type: 3}
-      propertyPath: directionThreshold
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3974380914279090333, guid: 54d658e8d080c0240b11244f6e14e7b9, type: 3}
       propertyPath: mainCamera
       value: 
@@ -459,24 +455,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 12.31, y: 0, z: 0}
---- !u!1 &1049486629 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1096939854163467549, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-  m_PrefabInstance: {fileID: 1761114891}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1049486633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049486629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3987a222dd170774aa2cb983068f47a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalSpeed: 0
 --- !u!4 &1491556070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1173340339, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
@@ -495,49 +473,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threats.Array.size
-      value: 3
+      propertyPath: pickups.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threats.Array.data[0]
+      propertyPath: pickups.Array.data[0]
       value: 
-      objectReference: {fileID: 692673726797708440, guid: f94b8be29ace39348aa908d977f5c35f, type: 3}
-    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threats.Array.data[1]
-      value: 
-      objectReference: {fileID: 692673726797708440, guid: 9fe799bf98367794f8ccb441b85c5f9f, type: 3}
-    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threats.Array.data[2]
-      value: 
-      objectReference: {fileID: 692673726797708440, guid: 3d2395f61093388478a3f20d1307e02b, type: 3}
-    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threatLanes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -5890238996004237592, guid: edb6f55ed5f36de48bdb57c6fe8ec99b, type: 3}
     - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
       propertyPath: occupationsdetections.x
-      value: 0.2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
       propertyPath: occupationsdetections.y
-      value: 0.3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
       propertyPath: occupationsdetections.z
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threatLanes.Array.data[0]
-      value: 
-      objectReference: {fileID: 1701622889}
-    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threatLanes.Array.data[1]
-      value: 
-      objectReference: {fileID: 389308288}
-    - target: {fileID: -4473003175502861622, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
-      propertyPath: threatLanes.Array.data[2]
-      value: 
-      objectReference: {fileID: 1491556070}
+    - target: {fileID: 1049486633, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
+      propertyPath: GlobalSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1096939854163467549, guid: 191d51873fb1c4c4297c7e284b4dd562, type: 3}
       propertyPath: m_Name
       value: WorldGenerator
